@@ -25,8 +25,8 @@ Sub_total <- rbind(Sub_train, Sub_test)
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement.
 cols_select <- grep(".*mean.*|.*std.*", var_names[,2])
 selected_var <- var_names[cols_select,]
-X_total <- X_total[,selected_var[,1]]
-
+X_total <- X_total[selected_var[,1],]
+colnames(X_total) <- gsub("\\(\\)", "", colnames(X_total))
 # 3. Uses descriptive activity names to name the activities in the data set
 colnames(Y_total) <- "activity"
 Y_total$activity <- sapply(Y_total$activity, function(x) {activity_labels[x,2]})
